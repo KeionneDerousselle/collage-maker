@@ -2,9 +2,8 @@ import webpack from 'webpack';
 import path from 'path';
 
 export default{
-    debug: true,
+
     devtool: 'inline-source-map',
-    noInfo: false,
 
     entry:[
         'eventsource-polyfill',
@@ -21,22 +20,50 @@ export default{
     },
 
     devServer:{
-        contentBase: path.resolve(__dirname, 'src')
+        contentBase: path.resolve(__dirname, 'src'),
+        hotOnly: true,
+        noInfo: false
     },
 
     plugins:[
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
 
     module:{
-        loaders:[
-            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
-            {test: /(\.css)$/, loaders: ['style', 'css']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-            {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+        rules:[
+            {
+                test: /\.js$/, 
+                include: path.join(__dirname, 'src'), 
+                use: 'babel-loader'
+            },
+
+            {
+                test: /(\.css)$/,
+                use: [
+                        { loader: 'style-loader' },
+                        { loader: 'css-loader' }
+                ]
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+                use: 'file-loader'
+            },
+            {
+                test: /\.(woff|woff2)$/, 
+                use: 'url?prefix=font/&limit=5000'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
+                use: 'url?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+                use: 'url?limit=10000&mimetype=image/svg+xml'
+            }
         ]
     }
 }
