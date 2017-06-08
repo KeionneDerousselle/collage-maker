@@ -1,0 +1,42 @@
+{
+  "name": "collage-maker",
+  "version": "1.0.0",
+  "description": "Creates a collage",
+  "main": "index.js",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-react-display-name": "^2.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-register": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "file-loader": "^0.11.2",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeionneDerousselle/collage-maker.git"
+  },
+  "author": "Keionne Derousselle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeionneDerousselle/collage-maker/issues"
+  },
+  "homepage": "https://github.com/KeionneDerousselle/collage-maker#readme"
+}
