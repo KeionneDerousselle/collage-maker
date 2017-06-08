@@ -30,7 +30,7 @@ export default{
             debug: true
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
 
     module:{
