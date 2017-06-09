@@ -1,6 +1,7 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
 import path from 'path';
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 export default{
 
@@ -44,9 +45,10 @@ export default{
             },
 
             {
-                test: /(\.css)$/,
+                test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    use: 'css-loader'
+                    fallback: "style-loader",
+                    use: "css-loader"
                 })
             },
             {
