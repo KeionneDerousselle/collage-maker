@@ -1,3 +1,4 @@
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
 import path from 'path';
 
@@ -30,7 +31,8 @@ export default{
             debug: true
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new ExtractTextPlugin('styles.css'),
     ],
 
     module:{
@@ -43,10 +45,9 @@ export default{
 
             {
                 test: /(\.css)$/,
-                use: [
-                        { loader: 'style-loader' },
-                        { loader: 'css-loader' }
-                ]
+                use: ExtractTextPlugin.extract({
+                    use: 'css-loader'
+                })
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
@@ -54,15 +55,45 @@ export default{
             },
             {
                 test: /\.(woff|woff2)$/, 
-                use: 'url?prefix=font/&limit=5000'
+                //loader: 'url?prefix=font/&limit=5000'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                        context: path.resolve(__dirname, './src'),
+                        limit: 10000,
+                        name: '[path][name].[ext]',
+                    },
+                  },
+                ]
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
-                use: 'url?limit=10000&mimetype=application/octet-stream'
+                //loader: 'url?limit=10000&mimetype=application/octet-stream'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                        context: path.resolve(__dirname, './src'),
+                        limit: 10000,
+                        name: '[path][name].[ext]',
+                    },
+                  },
+                ]
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-                use: 'url?limit=10000&mimetype=image/svg+xml'
+                //loader: 'url?limit=10000&mimetype=image/svg+xml'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                        context: path.resolve(__dirname, './src'),
+                        limit: 10000,
+                        name: '[path][name].[ext]',
+                    },
+                  },
+                ]
             }
         ]
     }
