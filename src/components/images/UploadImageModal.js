@@ -16,7 +16,7 @@ class UploadImageModal extends React.Component{
 
     uploadFile() {
         console.log('hi');
-        $('#fileUpload').click();
+        $('#file-upload').click();
     }
 
     render(){
