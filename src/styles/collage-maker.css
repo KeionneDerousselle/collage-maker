@@ -1,3 +1,33 @@
 * {
   border-radius: 0 !important;
 }
+
+html, body{
+  height: 100%;
+  width: 100%
+}
+
+.collage-nav{
+  margin-bottom: 0px !important;
+  border: none;
+}
+
+.file-system{
+  border-right: 3px solid #eee;
+  height: 100vh;
+}
+
+.file-system-content{
+  padding-top: 10px;
+}
+
+.image-content{
+  padding-top: 10px;
+  height: 100vh;
+}
+
+.image-grid{
+  border: 2px solid #eee;
+  height: 100%;
+  margin: 25px;
+}
