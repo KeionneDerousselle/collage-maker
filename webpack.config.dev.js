@@ -34,6 +34,11 @@ export default{
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new ExtractTextPlugin('styles.css'),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            jquery: 'jquery'
+        }),
     ],
 
     module:{
@@ -96,6 +101,10 @@ export default{
                     },
                   },
                 ]
+            },
+            {
+                test: /bootstrap.+\.(jsx|js)$/,
+                use: 'imports-loader?jQuery=jquery,$=jquery,this=>window',
             }
         ]
     }
