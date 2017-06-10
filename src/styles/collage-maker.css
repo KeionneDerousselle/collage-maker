@@ -31,3 +31,27 @@ html, body{
   height: 100%;
   margin: 25px;
 }
+
+.drop-here {
+  border: 4px dashed #DDD;
+  height: 300px;
+  width: 100%;
+  display: table;
+}
+
+.drop-instructions {
+  height:100%;
+  color:#888;
+  align-items: center;
+  vertical-align: middle;
+  padding: 50px;
+  display: table-cell;
+  }
+
+.drop-instructions h3 {
+  margin-top: 0px;
+}
+
+#file-upload {
+  display: none;
+}

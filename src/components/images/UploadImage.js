@@ -25,16 +25,23 @@ class UploadImage extends React.Component{
 
     render(){
         return(
-            <div className="row">
-                <div className="col-xs-12">
-                    <button className="btn btn-primary pull-right" 
-                        data-toggle="modal" 
-                        data-target="#myModal"
-                        onClick={this.handleShowModal}>Insert Image</button>
+            <div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <button className="btn btn-primary pull-right" 
+                            data-toggle="modal" 
+                            data-target="#myModal"
+                            onClick={this.handleShowModal}>Insert Image</button>
+                    </div>
                 </div>
-                {this.state.showUploadModal? <UploadImageModal 
-                                                handleHideModal={this.handleHideModal} /> : null}
+                <div className="container">
+                    <div className="row">
+                        {this.state.showUploadModal? <UploadImageModal 
+                                            handleHideModal={this.handleHideModal} /> : null}
+                    </div>
+                </div>
             </div>
+
         );
     };
 };
