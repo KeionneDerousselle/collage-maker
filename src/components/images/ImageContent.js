@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageGrid from './ImageGrid';
-import UploadImage from './UploadImage';
+import UploadImage from './UploadImage/UploadImage';
 
 class ImageContent extends React.Component{
     constructor(){
