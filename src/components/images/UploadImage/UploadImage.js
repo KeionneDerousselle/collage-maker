@@ -34,7 +34,7 @@ class UploadImage extends React.Component{
                     <div className="row">
                         {this.state.showUploadModal? <UploadImageModal 
                                             handleHideModal={this.handleHideModal} 
-                                            handleSelectImage={this.props.handleUpload}/> : null}
+                                            handleImageUploaded={this.props.handleUpload}/> : null}
                     </div>
                 </div>
             </div>

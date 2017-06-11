@@ -21,7 +21,7 @@ class UploadImageModal extends React.Component {
     }
 
     submitImage = () => {
-        console.log(this.state.imageUri);
+        this.props.handleImageUploaded(this.state.imageUri);
     }
 
     render() {
