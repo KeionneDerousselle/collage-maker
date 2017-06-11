@@ -41,3 +41,5 @@ class DropInstructions extends React.Component {
         );
     }
 }
+
+export default DropInstructions;
