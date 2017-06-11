@@ -2,22 +2,18 @@ import React from 'react';
 import UploadImageModal from './UploadImageModal';
 
 class UploadImage extends React.Component{
-    constructor(){
-        super();
-
-        this.handleHideModal = this.handleHideModal.bind(this);
-        this.handleShowModal = this.handleShowModal.bind(this);
-
+    constructor(props){
+        super(props);
         this.state = { showUploadModal : false };
     }
 
-    handleHideModal(){
+    handleHideModal = () => {
         this.setState({
             showUploadModal : false
         });
     }
 
-    handleShowModal(){
+    handleShowModal = () =>{
         this.setState({
             showUploadModal : true
         });
@@ -37,7 +33,8 @@ class UploadImage extends React.Component{
                 <div className="container">
                     <div className="row">
                         {this.state.showUploadModal? <UploadImageModal 
-                                            handleHideModal={this.handleHideModal} /> : null}
+                                            handleHideModal={this.handleHideModal} 
+                                            handleSelectImage={this.props.handleUpload}/> : null}
                     </div>
                 </div>
             </div>
