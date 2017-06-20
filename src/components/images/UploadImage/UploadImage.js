@@ -24,7 +24,9 @@ class UploadImage extends React.Component{
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <button className="btn btn-primary pull-right" 
+                        <button
+                            disabled = {this.props.disabled} 
+                            className="btn btn-primary pull-right" 
                             data-toggle="modal" 
                             data-target="#myModal"
                             onClick={this.handleShowModal}>Insert Image</button>

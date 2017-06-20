@@ -36,34 +36,6 @@ class ImageGrid extends React.Component{
         window.removeEventListener("resize", this.updateGridSize);
     }
 
-    cellSelected = (cell) => {
-        let {lastSelectedCell, selectedCells} = this.state;
-
-        if(!lastSelectedCell){
-            selectedCells.push(cell);
-            this.setState({lastSelectedCell: cell, selectedCells: selectedCells});
-            console.log(`The cell, {${cell.location.row}, ${cell.location.col}} was selected.`);
-        } 
-        else if(!this.isSameCell(lastSelectedCell, cell)){
-            if(this.isHorizontal(lastSelectedCell, cell)){
-                console.log(`The cell, {${cell.location.row}, ${cell.location.col}} is horizonal to the last selected cell, {${lastSelectedCell.location.row}, ${lastSelectedCell.location.col}}.`);
-            }
-            if(this.isVertical(lastSelectedCell, cell)){
-                console.log(`The cell, {${cell.location.row}, ${cell.location.col}} is vertical to the last selected cell, {${lastSelectedCell.location.row}, ${lastSelectedCell.location.col}}.`);
-            }
-
-            selectedCells.push(cell);
-            this.setState({lastSelectedCell: cell, selectedCells: selectedCells});
-        }
-    }
-
-    cellUnselected = (unselectedCell) => {
-        let {selectedCells} = this.state;
-        selectedCells = selectedCells.filter(cell => cell.key === unselectedCell.key);
-        this.setState({selectedCells: selectedCells});
-        console.log(`The cell, {${unselectedCell.location.row}, ${unselectedCell.location.col}} was unselected.`);
-    }
-
     isVertical = (cell1, cell2) => {
         return (cell1.location.col === cell2.location.col)
     }
@@ -75,6 +47,60 @@ class ImageGrid extends React.Component{
     isSameCell = (cell1, cell2) => {
         return (cell1.location.col === cell2.location.col) && 
                 (cell1.location.row === cell2.location.row);
+    }
+
+    isCellSelected = (cell) => {
+        return this.state.selectedCells.findIndex(c => this.isSameCell(c, cell)) > -1;
+    }
+
+    noCellsSelected = () => {
+        return !this.state.selectedCells || this.state.selectedCells.length == 0;
+    }
+
+    checkForValidCellSelection = () => {
+        let isValid = (this.state.selectedCells && this.state.selectedCells.length > 0);
+        this.props.handleCellSelection(isValid);
+    }
+
+    cellSelected = (cell) => {
+        let {lastSelectedCell, selectedCells} = this.state;
+
+        if(this.noCellsSelected()){
+            selectedCells.push(cell);
+            this.setState(
+                {
+                    lastSelectedCell: cell, 
+                    selectedCells: selectedCells
+                }, 
+                this.checkForValidCellSelection()
+            );
+        } 
+        else {
+
+            if(!this.isCellSelected(cell)){
+                selectedCells.push(cell);
+            }
+
+            this.setState(
+                {
+                    lastSelectedCell: cell, 
+                    selectedCells: selectedCells
+                }, 
+                this.checkForValidCellSelection()
+            );
+        }
+    }
+
+    cellUnselected = (unselectedCell) => {
+        let selectedCells = this.state.selectedCells.filter( (cell) => !this.isSameCell(cell, unselectedCell));
+        this.setState(
+            {
+                selectedCells: selectedCells
+            },
+                () => {
+                    this.checkForValidCellSelection()
+                }
+            );
     }
 
     render(){
