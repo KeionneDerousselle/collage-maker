@@ -13,7 +13,6 @@ class ImageGrid extends React.Component{
             cellWidth: 0, 
             cellHeight: 0,
             selectedCells: [],
-            lastSelectedCell: null
         };
     }
 
@@ -63,13 +62,12 @@ class ImageGrid extends React.Component{
     }
 
     cellSelected = (cell) => {
-        let {lastSelectedCell, selectedCells} = this.state;
+        let {selectedCells} = this.state;
 
         if(this.noCellsSelected()){
             selectedCells.push(cell);
             this.setState(
                 {
-                    lastSelectedCell: cell, 
                     selectedCells: selectedCells
                 }, 
                 this.checkForValidCellSelection()
@@ -83,7 +81,6 @@ class ImageGrid extends React.Component{
 
             this.setState(
                 {
-                    lastSelectedCell: cell, 
                     selectedCells: selectedCells
                 }, 
                 this.checkForValidCellSelection()
