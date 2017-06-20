@@ -9,6 +9,10 @@ class ImageCell extends React.Component{
         }
     }
 
+    toggleCellSelection = () =>{
+        this.setState({selected: !this.state.selected});
+    }
+
     render(){
         return(
             <div style={{
@@ -16,7 +20,9 @@ class ImageCell extends React.Component{
                 left:this.props.left,
                 height:this.props.height, 
                 width:this.props.width, 
-            }} className={this.state.selected ? 'selected-img-cell' : 'img-cell'}>
+            }} 
+            className={this.state.selected ? 'selected-img-cell' : 'img-cell'}
+            onClick={this.toggleCellSelection}>
                 {
                     this.state.imageUri ?
                     <img 
