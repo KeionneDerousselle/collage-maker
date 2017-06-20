@@ -5,12 +5,23 @@ class ImageCell extends React.Component{
         super(props);
         this.state = { 
             imageUri: '', 
-            selected: false
+            selected: false,
+            location:{
+                row: this.props.location.row,
+                col: this.props.location.col
+            } 
         }
     }
 
     toggleCellSelection = () =>{
-        this.setState({selected: !this.state.selected});
+        let selected = !this.state.selected;
+        this.setState({selected: selected});
+        if(selected){
+            this.props.handleCellSelected(this.state);
+        }
+        else{
+            this.props.handleCellUnselected(this.state);
+        }
     }
 
     render(){
