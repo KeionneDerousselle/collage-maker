@@ -9,7 +9,7 @@ class ImageGrid extends React.Component{
             height: 0,
             width: 0,
             columns: 2,
-            rows: 3,
+            rows: 4,
             cellWidth: 0, 
             cellHeight: 0
         };
@@ -35,10 +35,22 @@ class ImageGrid extends React.Component{
     }
 
     render(){
-        console.log(JSON.stringify(this.state, null, 2));
+        let {cellWidth, cellHeight} = this.state;
+        let cells = [];
+        for(let row = 0; row < this.state.rows; row++) {
+            for (let column = 0; column < this.state.columns; column++) {
+                cells.push(
+                    <ImageCell key={row + '' + column} 
+                               top={row*cellHeight} 
+                               left={column*cellWidth} 
+                               height={cellHeight} width={cellWidth} />
+                )
+            }
+        }
         
         return(
             <div ref="imageGrid" className="image-grid">
+                {cells}
             </div>
         );
     }

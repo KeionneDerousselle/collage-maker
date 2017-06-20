@@ -1,25 +1,28 @@
 import React from 'react';
 
 class ImageCell extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = { 
             imageUri: '', 
-            cellWidth: 0,
-            cellHeight: 0,
             selected: false
         }
     }
 
     render(){
         return(
-            <div className={this.state.selected ? 'selected-img-cell' : 'img-cell'}>
+            <div style={{
+                top:this.props.top,
+                left:this.props.left,
+                height:this.props.height, 
+                width:this.props.width, 
+            }} className={this.state.selected ? 'selected-img-cell' : 'img-cell'}>
                 {
                     this.state.imageUri ?
-                    <image 
+                    <img 
                     src={this.state.imageUri}
-                    height={this.state.cellHeight}
-                    width={this.state.cellWidth}
+                    height={this.props.height}
+                    width={this.props.width}
                     className='img-responsive' /> :
                     null
                 }
