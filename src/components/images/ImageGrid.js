@@ -4,34 +4,41 @@ import ImageCell from './ImageCell';
 class ImageGrid extends React.Component{
     constructor(props){
         super(props);
-        const NUMBER_OF_CELLS = 6;
-        const NUMBER_OF_ROWS = 3;
+
         this.state = { 
-            numberOfPictureCells : NUMBER_OF_CELLS,
-            numberOfPictureRows: 3,
-            cells: new Array(NUMBER_OF_CELLS)
+            height: 0,
+            width: 0,
+            columns: 2,
+            rows: 3,
+            cellWidth: 0, 
+            cellHeight: 0
         };
     }
 
+    updateGridSize = () => {
+        let { offsetHeight, offsetWidth } = this.refs.imageGrid;
+        this.setState({
+            height: offsetHeight, 
+            width: offsetWidth,
+            cellWidth: Math.floor(offsetWidth/this.state.columns),
+            cellHeight: Math.floor(offsetHeight/this.state.rows),
+        });
+    }
+
+    componentDidMount(){
+        this.updateGridSize();
+        window.addEventListener("resize", this.updateGridSize);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("resize", this.updateGridSize);
+    }
+
     render(){
-        let image = <img className='img-reponsive' src={this.props.image} />
-        let rows = new Array(NUMBER_OF_ROWS);
-        let cellsPerRow = NUMBER_OF_CELLS/NUMBER_OF_ROWS;
-
+        console.log(JSON.stringify(this.state, null, 2));
         
-
-        let content = rows.map((rows) =>
-            {
-                <div className='row'>
-                       
-                </div>
-            }
-        );
-
-        
-
         return(
-            <div className="image-grid">
+            <div ref="imageGrid" className="image-grid">
             </div>
         );
     }

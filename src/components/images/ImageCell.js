@@ -11,8 +11,6 @@ class ImageCell extends React.Component{
         }
     }
 
-
-
     render(){
         return(
             <div className={this.state.selected ? 'selected-img-cell' : 'img-cell'}>
