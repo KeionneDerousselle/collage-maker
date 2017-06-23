@@ -52,19 +52,46 @@ class ImageGrid extends React.Component{
         return this.state.selectedCells.findIndex(c => this.isSameCell(c, cell)) > -1;
     }
 
-    noCellsSelected = () => {
-        return !this.state.selectedCells || this.state.selectedCells.length == 0;
+    cellsAreSelected = () => {
+        return this.state.selectedCells && this.state.selectedCells.length > 0;
     }
 
     checkForValidCellSelection = () => {
-        let isValid = (this.state.selectedCells && this.state.selectedCells.length > 0);
+        let isValid = this.cellsAreSelected();
+        if(isValid){
+            if(this.shouldCheckForRectangularSelection()){
+                console.log('even');
+
+            }
+        }
         this.props.handleCellSelection(isValid);
+    }
+
+    shouldCheckForRectangularSelection = () => {
+        let isAnEvenNumOfSelections = this.state.selectedCells.length % 2 === 0;
+        return isAnEvenNumOfSelections;
+    }
+
+    minXSelected = () => {
+
+    }
+
+    minYSelected = () => {
+
+    }
+
+    maxXSelected = () => {
+
+    }
+
+    maxYSelected = () =>{
+        
     }
 
     cellSelected = (cell) => {
         let {selectedCells} = this.state;
 
-        if(this.noCellsSelected()){
+        if(!this.cellsAreSelected()){
             selectedCells.push(cell);
             this.setState(
                 {
